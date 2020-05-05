@@ -3,9 +3,9 @@
 #Author: Teddy Knab
 #Date: 5/5/2020
 
-$my_arr = ['<Limit POST PUT DELETE>', '  Require valid-user', '</Limit>' ]  #basic limit to prevent options
+$my_arr = ['<Location />', '  Order allow,deny', '  Allow from All','  <Limit POST PUT DELETE>', '   Require valid-user', '  </Limit>' , '</Location>' ],  #basic limit to prevent options
 $my_str = $my_arr.join("\n") #build multi line string
-$myfilename = '/etc/httpd/conf.d/non-ssl.conf'
+$myfilename = '/etc/httpd/conf.d/99protect_options.conf'
 file { "$myfilename" :
      ensure => present,
 }->file_line{ "apend $v to $myfilename":
